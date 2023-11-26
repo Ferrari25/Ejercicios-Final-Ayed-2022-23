@@ -53,8 +53,7 @@ while votro != "n":
     else:
         print("operacion incorrecta")
     votro = input("Desea realizar otra operacion? [s/n]:  ")
-    if votro != "s":
-        break
+
 
 
 
