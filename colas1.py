@@ -1,39 +1,46 @@
 
-elemento = 8
+elementos = 6
 
 class Cola:
+
     def __init__(self):
         self.frente = 1
         self.final = 1
-        self.dato = [None] * elemento 
+        self.dato = [None] * elementos
+
         
     def cola_vacia(self):
         if self.frente == self.final : 
             return True
-        else:
-            return print("la cola esta vacia")
+
     
     def cola_llena(self):
-        siguiente = (self.final + 1) % elemento
+        siguiente = (self.final % elementos) + 1
         if siguiente == self.frente:
             return True
-        else:
-            print("la cola esta llena")
+
         
     def meter(self, valor):
         if not self.cola_llena():
             self.dato[self.final] = valor
-            self.final = (self.final + 1) % elemento
+            self.final = (self.final % elementos) + 1
         else: 
             print("la cola esta llena")
+        return
+  
 
     def sacar(self):
-        if not self.cola_vacia(): 
+        if not self.cola_vacia():   
             valor = self.dato[self.frente]
-            self.frente = (self.frente + 1) % elemento
-            return valor
-        else: 
-            print("la cola esta vacia") 
+            self.frente = (self.frente % elementos) + 1
+        else: print("la cola esta vacia")
+        
+        if (self.frente == elementos) and (self.final == elementos):
+            self.frente = 1
+            self.final = 1
+            print("la cola se reinicio")
+        return valor
+
     
     def mostrar(self):
         for i in range(self.frente,self.final):
@@ -41,39 +48,27 @@ class Cola:
         return
 
 votro =""
+operacion = 0
 valor = 0
 obj_cola = Cola()
 
+
 while votro != "n":
-    operacion = input("Ingrese la operacion que desea realizar:  [a/q]")
-    if operacion == "a":
-        valor = int(input("Ingrese el valor a agregar: "))
+    print("1 - agregar elemento:  ")
+    print("2 - sacar elemento:  ")
+    print("3 - consultar cola:  ")
+    operacion = int(input("elija una operacion: "))
+    if operacion == 1:
+        valor = int(input("Ingrese el valor a agregar:  "))
         obj_cola.meter(valor)
-    elif operacion == "q":
+    elif operacion == 2:
         obj_cola.sacar()
-    else: 
+    elif operacion == 3:
+        obj_cola.mostrar()
+    else:
         print("operacion incorrecta")
-    votro = input("Desea realizar otra operacion? [s/n]")
+    votro = input("Desea realizar otra operacion? [s/n]:  ")
     if votro != "s":
         break
-
-# obj_cola.meter(1)
-# print("meti 1")
-# obj_cola.meter(2)
-# print("meti 2")
-# obj_cola.meter(3)
-# print("meti 3")
-# obj_cola.meter(4)
-# print("meti 4")
-# obj_cola.meter(5)
-# print("meti 5")
-# obj_cola.meter(6)
-# print("meti 6")
-# #obj_cola.meter(7)
-# obj_cola.sacar()
-# obj_cola.sacar()
-# print("meti 7") 
-# print("este es el frebte de la cola {}".format(obj_cola.frente))
-# print("este es el final de la cola {}".format(obj_cola.final))
-# print("ultima ejecucion")
-# obj_cola.mostrar()
+    
+        
