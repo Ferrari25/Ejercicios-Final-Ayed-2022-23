@@ -6,22 +6,26 @@ class Pila:
         self.dato = [0] * elemento
 
     def pila_vacia(self):
-        return self.cima == 0
+        if self.cima == 0:
+            return True
 
     def pila_llena(self):
-        return self.cima == elemento -1
+        if self.cima == elemento - 1:
+            return True
 
     def agregar(self, valor):
         if not self.pila_llena():
             self.cima += 1
             self.dato[self.cima] = valor
-        else: print("la pila esta llena capo")
+        else: 
+            print("La pila esta llena")
         return
 
     def quitar(self):
         if not self.pila_vacia():
             self.cima -= 1
-        else: print("la pila esta vacia capo")
+        else:
+            print("La pila esta vacia")
         return 
 
     def mostrar(self):
@@ -35,25 +39,22 @@ votro = ""
 voperacion = ""
 
 while votro != "n":
-    operacion = input("Ingrese la operacion que desea realizar:  [a/q]")
-    if operacion == "a":
-        valor = int(input("Ingrese el valor a agregar: "))
+    print("1 - agregar elemento:  ")
+    print("2 - sacar elemento:  ")
+    print("3 - consultar pila:  ")
+    operacion = int(input("elija una operacion: "))
+    if operacion == 1:
+        valor = int(input("Ingrese el valor a agregar:  "))
         obj_pila.agregar(valor)
-    elif operacion == "q":
+    elif operacion == 2:
         obj_pila.quitar()
-    else: 
+    elif operacion == 3:
+        obj_pila.mostrar()
+    else:
         print("operacion incorrecta")
-    votro = input("Desea realizar otra operacion? [s/n]")
+    votro = input("Desea realizar otra operacion? [s/n]:  ")
     if votro != "s":
         break
 
-# obj_pila.agregar(1)
-# obj_pila.agregar(2)
-# obj_pila.agregar(3)
-# obj_pila.agregar(4)
-# obj_pila.agregar(5)
-# obj_pila.agregar(6)
-# obj_pila.agregar(7)
-# obj_pila.agregar(8)
-# obj_pila.quitar()
-# obj_pila.mostrar()
+
+
