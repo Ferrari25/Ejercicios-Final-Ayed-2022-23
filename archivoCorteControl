@@ -1,0 +1,43 @@
+# file = "camiones.txt"
+
+# registro: nroCamion     entero
+#           fecha         cadena
+#           litros        real
+
+# cada registros es un viaje
+# separador = ";"
+
+# mostrar:
+#         cantidad de viajes x camion
+#         total de litros consumidos
+#         nr de camion con el mayor total de litros consumidos
+#         [ordenado por nro de camion]
+
+archivo = open("camiones.txt", "r")
+registro = archivo.readline()
+vector = registro.split(";")
+campo_camion = vector[0]
+campo_fecha = vector[1]
+campo_litros = vector[2]
+
+while registro != ";":
+    z = 0
+    acumulador = 0
+    control = campo_camion  
+    while registro != ";" and control == campo_camion:
+        z +=1
+        acumulador += campo_litros
+        registro = archivo.readline()
+        
+        if registro != ";":
+            vector = registro.split(";")
+            campo_camion = vector[0]
+            campo_fecha = vector[1]
+            campo_litros = vector[2]
+    print("camion: ", control, "viajes: ", z, "litros: ", acumulador)
+    
+    if acumulador > maximo:
+        maximo = acumulador
+        maximoAuxiliar = control
+print("camion con mayor litros: ", maximoAuxiliar)
+archivo.close()
