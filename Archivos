@@ -1,0 +1,42 @@
+# se tiene el siguiente arhivo 
+# nombre ext: produ.dat
+# registros: 
+#         fecha produ
+#         nrohorno
+#         toneprodu
+#     nrohorno => 1--10
+    
+# mostrar
+#     *cant de produccion x horno
+#     *total de toneladas producidas x horno
+#     *nro de horno con la mayor cantidad de produccion (max repetidos)
+hornos = 11
+cantProducs = [0] * hornos
+tonedasProducs = [0] * hornos
+archivo = open("produ.dat", "r")
+registro = archivo.readline()
+vector = [""] * 4
+maximo = -9000000
+
+while registro != "":
+    vector = registro.split(";")
+    nroHorno = int(vector[1])
+    toneProducs = float(vector[2])
+    cantProducs[nroHorno] += 1
+    tonedasProducs[nroHorno] += toneProducs
+    registro = archivo.readline()
+    
+
+archivo.close()
+
+for i in range(1,hornos):
+    print("horno: ", i,
+          "cant produc: ", cantProducs[i],
+          "toneladas: ", tonedasProducs[i])
+    
+    if cantProducs[i] > maximo:
+        maxCant = cantProducs[i]
+        maxHorno = i
+for i in range(1,hornos):
+    if cantProducs[i] == maxCant:
+        print("horno con mayor produccion: ", i)
